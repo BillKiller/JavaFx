@@ -85,7 +85,6 @@ public class MyShape{
 	public void setOnRealse(){
 		shape.setOnMouseClicked(e->{
 			status.setRelease();
-			e.
 			System.out.println("asd");
 			this.editer.show(x,y);
 		});

@@ -86,7 +86,6 @@ public class ToolBarUI extends Application {
 		MyCircle myCircle=new MyCircle(500,500,50);
 		mainBoard.getChildren().add(myCircle.getShape());
 		mainBoard.getChildren().addAll(myCircle.getEditer().getCircles());
-
 		//		mainBoard.getChildren().add(circle);
 		return mainBoard ;
 	}
