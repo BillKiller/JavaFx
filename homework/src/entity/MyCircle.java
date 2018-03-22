@@ -5,8 +5,6 @@ import javafx.scene.shape.Circle;
 
 public class MyCircle extends MyShape {
 	private Circle circle;
-	private double x;
-	private double y;
 	private double radius;
 	public MyCircle(){
 		this(500,500,50);
@@ -22,8 +20,8 @@ public class MyCircle extends MyShape {
 			super.setMyShape(this.circle);
 	}
 	public void Move(double x,double y){
-			super.Move(x, y);
-			circle.setCenterX(x);
-			circle.setCenterY(y);
+		super.Move(x,y);
+		circle.setCenterX(this.x);
+		circle.setCenterY(this.y);
 	}
 }

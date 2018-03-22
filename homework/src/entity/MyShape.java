@@ -1,19 +1,23 @@
 package entity;
 
 import javafx.scene.Cursor;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public class MyShape{
-	private double x;
-	private double y;
-	private double width;
-	private double height;
+	protected double x;
+	protected double y;
+	protected double width;
+	protected double height;
 	private Status status;
 	private boolean isDrag;
 	private boolean isZoom;
 	private Shape shape;
 	private Editer editer;
+	private double sceneX;
+	private double sceneY;
+	private Pane pane;
 //--getter and setter
 	public Shape getShape(){
 		return this.shape;
@@ -25,8 +29,11 @@ public class MyShape{
 		this.shape=shape;
 		this.status=new Status();
 		this.editer=new Editer(x,y,height,width);
+		pane=new Pane();
+		pane.getChildren().add(editer.getPane());
+		pane.getChildren().add(shape);
 		addListener();
-		startEditerListener();
+
 	}
 	public Editer getEditer() {
 		return editer;
@@ -58,6 +65,7 @@ public class MyShape{
 	public void setHeight(double height) {
 		this.height = height;
 	}
+	public Pane getPane(){return  pane; }
 
 
 //-----------constructor------------------------
@@ -67,42 +75,59 @@ public class MyShape{
 		this.height=height;
 		this.width=width;
 	}
-// ---listener--
-	public void addListener(){
+/* ---listener
+		--editer listener
+		--cursor listener
+		--resize listener
+		--move   listener
+
+*/
+public void addListener(){
 			setOnDrag();
 			setOnRealse();
+			resizeEditerListener();
+			moveHandListener();
 	}
 	public void setOnDrag(){
 		shape.setOnMouseDragged(e->{
-				status.setDrag();
-				status.move(e.getX(),e.getY());
-				System.out.println("test");
-				Move(e.getX(),e.getY());
-				editer.disapper();
+				Move(e.getSceneX(),e.getSceneY());
+				System.out.println("testX:"+e.getX()+"thisY"+e.getY());
+				System.out.println("this,x"+getX()+"this,.y"+getY());
+				getEditer().show(this.x,this.y);
 		});
 	}
 
 	public void setOnRealse(){
 		shape.setOnMouseClicked(e->{
 			status.setRelease();
-			System.out.println("asd");
 			this.editer.show(x,y);
 		});
 	}
 
 	public void Move(double x,double y){
-			this.x=x;
-			this.y=y;
+			this.x=x-this.getShape().getParent().getParent().getLayoutX();
+			this.y=y-this.getShape().getParent().getParent().getLayoutY();
+
 	}
 
-	///--------listener
-	private void  startEditerListener() {
+	///Cursor listener
+	/*
+	* 	for shape cursor will be changed to moveHand
+	*   for mouse on editer(which is nine small circle) will be changed to RESIZEhand
+	*
+	* */
+	private void  resizeEditerListener() {
 		Circle []circles=editer.getCircles();
-		Cursor []hand={Cursor.NW_RESIZE,Cursor.W_RESIZE,Cursor.NE_RESIZE,Cursor.N_RESIZE,Cursor.MOVE,Cursor.S_RESIZE,Cursor.SW_RESIZE,Cursor.E_RESIZE,Cursor.SE_RESIZE};
+		Cursor []hand={Cursor.NW_RESIZE,Cursor.W_RESIZE,Cursor.SW_RESIZE,Cursor.N_RESIZE,Cursor.MOVE,Cursor.S_RESIZE,Cursor.NE_RESIZE,Cursor.E_RESIZE,Cursor.SE_RESIZE};
 		for(int i =0;i<circles.length;i++){
 			circles[i].setCursor(hand[i]);
 		}
 	}
+	private void moveHandListener(){
+		getShape().setCursor(Cursor.MOVE);
+	}
+	//Resize listener
+	private void resize(){
 
-
+	}
 }
