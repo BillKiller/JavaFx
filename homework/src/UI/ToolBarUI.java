@@ -20,10 +20,6 @@ public class ToolBarUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		BorderPane root = new BorderPane();
-
-
-
-
 		root.setCenter(getMainBoard());
 		root.setLeft(getLeftBoard());
         root.setTop(getTopBoard());
