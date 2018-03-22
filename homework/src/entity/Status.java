@@ -21,7 +21,7 @@ public class Status extends Text {
 	public void setRotate(boolean isRotate) {
 		this.isRotate = isRotate;
 	}
-	public void  move(double x,double y){
+	public void  Move(double x,double y){
 		this.x=x;
 		this.y=y+20;
 		super.setX(this.x);

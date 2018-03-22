@@ -2,13 +2,17 @@ package UI;
 
 import entity.MyCircle;
 import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
 public class ToolBarUI extends Application {
@@ -17,9 +21,12 @@ public class ToolBarUI extends Application {
 
 		BorderPane root = new BorderPane();
 
-		root.setTop(getTopBoard());
-		root.setLeft(getLeftBoard());
+
+
+
 		root.setCenter(getMainBoard());
+		root.setLeft(getLeftBoard());
+        root.setTop(getTopBoard());
 		Scene  scene= new Scene(root,800,800);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -72,22 +79,28 @@ public class ToolBarUI extends Application {
 		/*
 		 * set borderPane and Scene
 		 */
+		Pane pane = new Pane();
+		pane.getChildren().add(menuBar);
 		return menuBar;
 	}
 
 	public Pane getLeftBoard() {
 		Pane pane = new Pane();
-		Button btn1= new Button("Circle");
-		pane.getChildren().add(btn1);
+		pane.setPrefSize(300,300);
+		pane.setMaxWidth(300);;
+        pane.setBackground(new Background(new BackgroundFill(Color.rgb(255,20,0),null,null)));
 		return pane;
 	}
 	public Pane  getMainBoard() {
-		Pane mainBoard = new Pane();
-		MyCircle myCircle=new MyCircle(500,500,50);
-		mainBoard.getChildren().add(myCircle.getShape());
-		mainBoard.getChildren().addAll(myCircle.getEditer().getCircles());
+		Pane pane = new Pane();
+        MyCircle myCircle = new MyCircle();
+        pane.getChildren().add(myCircle.getPane());
+        pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
+		//MyCircle myCircle=new MyCircle(500,500,50);
+		//mainBoard.getChildren().add(myCircle.getShape());
+		//mainBoard.getChildren().addAll(myCircle.getEditer().getCircles());
 		//		mainBoard.getChildren().add(circle);
-		return mainBoard ;
+		return pane;
 	}
 	public static void main(String[] args) {
 		launch(args);
