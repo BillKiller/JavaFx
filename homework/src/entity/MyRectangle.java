@@ -12,8 +12,8 @@ public class MyRectangle extends  MyShape {
         super(x,y,width,height);
         this.width=this.width/2;
         this.height=this.height/2;
-        leftX=x-width;
-        leftY=y-height;
+        leftX=x;
+        leftY=y;
         this.x=this.x+this.width;
         this.y=this.y+this.height;
         this.rectangle=new Rectangle(x,y,width,height);
