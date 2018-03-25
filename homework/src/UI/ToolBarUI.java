@@ -1,19 +1,26 @@
 package UI;
 
+import java.awt.Label;
+
 import entity.MyCircle;
 import entity.MyRectangle;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
-import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
@@ -25,7 +32,7 @@ public class ToolBarUI extends Application {
 		root.setCenter(getMainBoard());
 		root.setLeft(getLeftBoard());
         root.setTop(getTopBoard());
-		Scene  scene= new Scene(root,800,800);
+		Scene  scene= new Scene(root,800,600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -82,24 +89,68 @@ public class ToolBarUI extends Application {
 		return menuBar;
 	}
 
-	public Pane getLeftBoard() {
-		Pane pane = new Pane();
+	public BorderPane getLeftBoard() {
+		BorderPane pane = new BorderPane();
 		pane.setPrefSize(300,300);
 		pane.setMaxWidth(300);;
         pane.setBackground(new Background(new BackgroundFill(Color.rgb(255,20,0),null,null)));
+        pane.setCenter(getVBox());
+        ScrollBar sb = new ScrollBar(); 
+        sb.setLayoutX(100);
+        sb.setMin(100);
+        sb.setOrientation(Orientation.VERTICAL); 
+        sb.setPrefHeight(180);  
+        sb.setMax(360);  
+  
+        sb.setUnitIncrement(10.0);  
+        sb.setBlockIncrement(5.0); 
 		return pane;
+	}
+
+	public VBox getVBox(){
+		VBox vBox = new VBox(20);
+		vBox.setPadding(new Insets(20,10,10,10));
+		Image imagePrepare = new Image("image/prepare.png");
+		Image imageConnector =new Image("image/connector.png");
+		Image imageData =new Image("image/data.png");
+		Image imageDecision = new Image("image/decision.png");
+		Image imageDocument =new Image("image/document.png");
+		Image imageStart = new Image("image/start.png");
+		Image imagePath = new Image("image/path.png");
+		Image imagePredefined = new Image("image/predefined.png");
+		Image imageProcess = new Image("image/process.png");
+		Button btnStart =new Button();
+		Button btnPrepare = new Button();
+		Button btnConnector = new Button();
+		Button btnData = new Button();
+		Button btnDecision =new Button();
+		Button btnDocument = new Button();
+		Button btnPath =new Button();
+		Button btnPredefined = new Button();
+		Button btnProcess = new Button();
+		btnStart.setGraphic(new ImageView(imageStart));
+		btnPrepare.setGraphic(new ImageView(imagePrepare));
+		btnConnector.setGraphic(new ImageView(imageConnector));
+		btnData.setGraphic(new ImageView(imageData));
+		btnDecision.setGraphic(new ImageView(imageDecision));
+		btnDocument.setGraphic(new ImageView(imageDocument));
+		btnPath.setGraphic(new ImageView(imagePath));
+		btnPredefined.setGraphic(new ImageView(imagePredefined));
+		btnProcess.setGraphic(new ImageView(imageProcess));
+		vBox.getChildren().add(btnStart);
+		vBox.getChildren().add(btnData);
+		vBox.getChildren().add(btnProcess);
+		vBox.getChildren().add(btnDecision);
+		vBox.getChildren().add(btnPath);
+		return vBox;
 	}
 	public Pane  getMainBoard() {
 		Pane pane = new Pane();
-        MyCircle myCircle = new MyCircle();
+		MyCircle myCircle = new MyCircle();
 		MyRectangle myRectangle=new MyRectangle(500,500,100,200);
 		myRectangle.getPane(pane);
-       	myCircle.getPane(pane);
-
-       	//debug
-
-		//
-        pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
+		myCircle.getPane(pane);
+		pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
 		return pane;
 	}
 	public static void main(String[] args) {
