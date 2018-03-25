@@ -13,6 +13,8 @@ public class MyCircle extends MyShape {
 			super(x,y,radius,radius);
 			this.x=x;
 			this.y=y;
+			leftX=x-radius;
+			leftY=y-radius;
 			this.radius=radius;
 			this.circle=new Circle(x,y,radius);
 			this.circle.setFill(Color.WHITE);
@@ -23,5 +25,8 @@ public class MyCircle extends MyShape {
 		super.Move(x,y);
 		circle.setCenterX(this.x);
 		circle.setCenterY(this.y);
+	}
+	public void resizeShape(double x,double y){
+
 	}
 }

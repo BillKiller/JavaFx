@@ -4,6 +4,7 @@ import entity.MyCircle;
 import entity.MyRectangle;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -91,15 +92,14 @@ public class ToolBarUI extends Application {
 	public Pane  getMainBoard() {
 		Pane pane = new Pane();
         MyCircle myCircle = new MyCircle();
-		MyRectangle myRectangle=new MyRectangle(500,500,50,50);
+		MyRectangle myRectangle=new MyRectangle(500,500,100,200);
 		myRectangle.getPane(pane);
-		Line line=new Line(0,0,100,100);
        	myCircle.getPane(pane);
+
+       	//debug
+
+		//
         pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
-		//MyCircle myCircle=new MyCircle(500,500,50);
-		//mainBoard.getChildren().add(myCircle.getShape());
-		//mainBoard.getChildren().addAll(myCircle.getEditer().getCircles());
-		//		mainBoard.getChildren().add(circle);
 		return pane;
 	}
 	public static void main(String[] args) {

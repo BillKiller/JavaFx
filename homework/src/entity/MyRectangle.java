@@ -12,6 +12,8 @@ public class MyRectangle extends  MyShape {
         super(x,y,width,height);
         this.width=this.width/2;
         this.height=this.height/2;
+        leftX=x-width;
+        leftY=y-height;
         this.x=this.x+this.width;
         this.y=this.y+this.height;
         this.rectangle=new Rectangle(x,y,width,height);
@@ -21,7 +23,20 @@ public class MyRectangle extends  MyShape {
     }
     public void Move(double x,double y){
         super.Move(x,y);
-        rectangle.setX(this.x-width);
-        rectangle.setY(this.y-height);
+        rectangle.setX(leftX);
+        rectangle.setY(leftY);
+    }
+    public void resizeShape(double x,double y){
+            if(width+x>=0 && height+y>=0) {
+                this.width = width + x;
+                this.height = height + y;
+                System.out.println("dx" + x + "dy" + y + "width" + width + "heigth" + height);
+                this.x = leftX + width;
+                this.y = leftY + height;
+                getEditer().setHeight(height+5);
+                getEditer().setWidth(width+5);
+                rectangle.setWidth(width * 2);
+                rectangle.setHeight(height * 2);
+            }
     }
 }

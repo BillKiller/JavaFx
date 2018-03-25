@@ -28,7 +28,25 @@ public class Editer {
 			this.width=width+10;
 			initLine(x,y);
 			initCicrle(x,y);
-			disapper();
+			disapperCircle();
+			disapperLine();
+	}
+
+	//getter--and --setter
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+	public void setHeight(double height) {
+		this.height = height;
 	}
 	//init start
 	private  void initCicrle(double x,double y){
@@ -48,12 +66,12 @@ public class Editer {
 		lines[4]=new Line(x,y+2*height,x+width,y+2*height);
 		lines[5]=new Line(x+width,y+2*height,x+2*width,y+2*height);
 		lines[6]=new Line(x+2*width,y,x+2*width,y+height);
-		lines[7]=new Line(x+2*width,y+height,x+2*height,y+2*height);
+		lines[7]=new Line(x+2*width,y+height,x+2*width,y+2*height);
 	}
 	private void lineMove(double x,double y) {
 		x=x-width;
 		y=y-height;
-		double pos[][]={{x,y,x+width,y},{x,y,x+2*width,y},{x,y,x,y+height},{x,y,x,y+2*height},{x,y+2*height,x+width,y+2*height},{x+width,y+2*height,x+2*width,y+2*height},{x+2*width,y,x+2*width,y+height},{x+2*width,y+height,x+2*height,y+2*height}};
+		double pos[][]={{x,y,x+width,y},{x,y,x+2*width,y},{x,y,x,y+height},{x,y,x,y+2*height},{x,y+2*height,x+width,y+2*height},{x+width,y+2*height,x+2*width,y+2*height},{x+2*width,y,x+2*width,y+height},{x+2*width,y+height,x+2*width,y+2*height}};
 		for(int i =0;i<8;i++) {
 			lines[i].setStartX(pos[i][0]);
 			lines[i].setStartY(pos[i][1]);
@@ -80,18 +98,24 @@ public class Editer {
 		}
 
 	}
-	public void  disapper(){
+	public void  disapperCircle(){
 		for(int i =0;i<3;i++){
 			for(int j =0;j<3;j++){
 				circles[3*i+j].setRadius(0);
 			}
 		}
+	}
+	public void disapperLine(){
 		for(int i =0;i<8;i++){
 			lines[i].setStartX(0);
 			lines[i].setStartY(0);
 			lines[i].setEndX(0);
 			lines[i].setEndY(0);
 		}
+	}
+	public void disapper(){
+		disapperCircle();
+		disapperLine();
 	}
 
 }
