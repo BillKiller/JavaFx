@@ -3,6 +3,7 @@ package entity;
 import javafx.scene.text.Text;
 
 public class Status extends Text {
+	//这是状态框，用于拖动的时候显示坐标
 	private double x;
 	private double y;
 	private boolean isDrag;

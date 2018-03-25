@@ -93,7 +93,8 @@ public class ToolBarUI extends Application {
         MyCircle myCircle = new MyCircle();
 		MyRectangle myRectangle=new MyRectangle(500,500,50,50);
 		myRectangle.getPane(pane);
-       myCircle.getPane(pane);
+		Line line=new Line(0,0,100,100);
+       	myCircle.getPane(pane);
         pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
 		//MyCircle myCircle=new MyCircle(500,500,50);
 		//mainBoard.getChildren().add(myCircle.getShape());

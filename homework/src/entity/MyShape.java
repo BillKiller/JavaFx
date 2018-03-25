@@ -31,11 +31,7 @@ public class MyShape{
 		this.status=new Status();
 		this.editer=new Editer(x,y,height,width);
 		pane=new Group();
-		//pane.setMaxWidth(getWidth());
-	//	pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,0,255),null,null)));
 		pane.setCursor(Cursor.CLOSED_HAND);
-	//	pane.setMaxSize(getWidth(),getHeight());
-	//	pane.setPrefSize(getWidth(),getHeight());
 		pane.getChildren().add(shape);
 		addListener();
 
@@ -81,7 +77,7 @@ public class MyShape{
 	}
 
 	public MyShape getPane(Pane pane){
-	    pane.getChildren().addAll(editer.getCircles());
+		editer.addEditer(pane);
 	    pane.getChildren().add(shape);
         return this;
     }

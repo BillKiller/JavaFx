@@ -10,6 +10,10 @@ public class MyRectangle extends  MyShape {
     }
     public MyRectangle(double x,double y,double width,double height){
         super(x,y,width,height);
+        this.width=this.width/2;
+        this.height=this.height/2;
+        this.x=this.x+this.width;
+        this.y=this.y+this.height;
         this.rectangle=new Rectangle(x,y,width,height);
         this.rectangle.setFill(Color.RED);
         this.rectangle.setStroke(Color.BLACK);
@@ -17,7 +21,7 @@ public class MyRectangle extends  MyShape {
     }
     public void Move(double x,double y){
         super.Move(x,y);
-        rectangle.setX(this.x-width/2);
-        rectangle.setY(this.y-height/2);
+        rectangle.setX(this.x-width);
+        rectangle.setY(this.y-height);
     }
 }
