@@ -1,6 +1,7 @@
 package UI;
 
 import entity.MyCircle;
+import entity.MyRectangle;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.Scene;
@@ -90,7 +91,9 @@ public class ToolBarUI extends Application {
 	public Pane  getMainBoard() {
 		Pane pane = new Pane();
         MyCircle myCircle = new MyCircle();
-        pane.getChildren().add(myCircle.getPane());
+		MyRectangle myRectangle=new MyRectangle(500,500,50,50);
+		myRectangle.getPane(pane);
+       myCircle.getPane(pane);
         pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
 		//MyCircle myCircle=new MyCircle(500,500,50);
 		//mainBoard.getChildren().add(myCircle.getShape());

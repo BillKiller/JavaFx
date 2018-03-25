@@ -1,6 +1,7 @@
 package entity;
 
 import javafx.scene.Cursor;
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -17,7 +18,7 @@ public class MyShape{
 	private Editer editer;
 	private double sceneX;
 	private double sceneY;
-	private Pane pane;
+	private Group pane;
 //--getter and setter
 	public Shape getShape(){
 		return this.shape;
@@ -29,8 +30,12 @@ public class MyShape{
 		this.shape=shape;
 		this.status=new Status();
 		this.editer=new Editer(x,y,height,width);
-		pane=new Pane();
-		pane.getChildren().add(editer.getPane());
+		pane=new Group();
+		//pane.setMaxWidth(getWidth());
+	//	pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,0,255),null,null)));
+		pane.setCursor(Cursor.CLOSED_HAND);
+	//	pane.setMaxSize(getWidth(),getHeight());
+	//	pane.setPrefSize(getWidth(),getHeight());
 		pane.getChildren().add(shape);
 		addListener();
 
@@ -65,16 +70,21 @@ public class MyShape{
 	public void setHeight(double height) {
 		this.height = height;
 	}
-	public Pane getPane(){return  pane; }
 
 
 //-----------constructor------------------------
-	public MyShape(double x,double y,double height,double width){
+	public MyShape(double x,double y,double width,double height){
 		this.x=x;
 		this.y=y;
 		this.height=height;
 		this.width=width;
 	}
+
+	public MyShape getPane(Pane pane){
+	    pane.getChildren().addAll(editer.getCircles());
+	    pane.getChildren().add(shape);
+        return this;
+    }
 /* ---listener
 		--editer listener
 		--cursor listener
@@ -105,8 +115,8 @@ public void addListener(){
 	}
 
 	public void Move(double x,double y){
-			this.x=x-this.getShape().getParent().getParent().getLayoutX();
-			this.y=y-this.getShape().getParent().getParent().getLayoutY();
+			this.x=x-this.getShape().getParent().getLayoutX();
+			this.y=y-this.getShape().getParent().getLayoutY();
 
 	}
 
