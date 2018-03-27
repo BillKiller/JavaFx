@@ -26,7 +26,7 @@ public class MyCircle extends MyShape {
 		circle.setCenterX(this.x);
 		circle.setCenterY(this.y);
 	}
-	public void resizeShape(double x,double y){
+	public void resizeShape(int X,int Y,double x,double y){
 
 	}
 }

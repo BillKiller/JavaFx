@@ -8,14 +8,15 @@ import javafx.scene.shape.Shape;
 
 public class Editer {
 	//这个类是修改框类，有8个点，当鼠标啊放在上面的时候，会相应改变鼠标形状
-	private Circle []circles;
+	private Point []circles;
 	private double x;
 	private double y;
 	private double width;
 	private double height;
 	private Pane pane;
 	private Line []lines;
-	public Circle[] getCircles(){
+	private int OnClick=0;
+	public Point[] getCircles(){
 		return this.circles;
 	}
 	public Pane getPane(){
@@ -48,12 +49,21 @@ public class Editer {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+
+	public int getOnClick() {
+		return OnClick;
+	}
+
+	public void setOnClick(int onClick) {
+		OnClick = onClick;
+	}
 	//init start
+
 	private  void initCicrle(double x,double y){
 		//这些圆是根据中心坐标实现的
-		circles =new Circle[9];
+		circles =new Point[9];
 		for(int i =0;i<9;i++){
-			circles[i] = new Circle(x,y,10);
+			circles[i] = new Point(x,y,5);
 			circles[i].setFill(Color.BLUE);
 		}
 	}

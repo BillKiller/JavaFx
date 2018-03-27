@@ -1,0 +1,4 @@
+.RoundRectangle{
+    -fx-arc-height: 10px;
+    -fx-arc-width: 10px;
+}

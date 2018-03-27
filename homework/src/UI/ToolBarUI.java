@@ -1,11 +1,9 @@
 package UI;
 
-import java.awt.Label;
-
 import entity.MyCircle;
 import entity.MyRectangle;
+import entity.RoundRectangle;
 import javafx.application.Application;
-import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -22,7 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
 import javafx.stage.Stage;
 public class ToolBarUI extends Application {
 	@Override
@@ -33,6 +30,8 @@ public class ToolBarUI extends Application {
 		root.setLeft(getLeftBoard());
         root.setTop(getTopBoard());
 		Scene  scene= new Scene(root,800,600);
+		Application.setUserAgentStylesheet(null);
+		//s//cene.getStylesheets().add(getClass().getResource("UI/view.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -150,6 +149,8 @@ public class ToolBarUI extends Application {
 		MyRectangle myRectangle=new MyRectangle(500,500,100,200);
 		myRectangle.getPane(pane);
 		myCircle.getPane(pane);
+		RoundRectangle roundRectangle=new RoundRectangle(300,300,100,100);
+		roundRectangle.getPane(pane);
 		pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,255,0),null,null)));
 		return pane;
 	}
